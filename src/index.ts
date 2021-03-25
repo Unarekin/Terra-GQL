@@ -1,5 +1,8 @@
 import { GraphQLClient as reqclient, gql } from 'graphql-request';
-import { pluck } from 'rxjs/operators';
+import { map, pluck } from 'rxjs/operators';
+import * as Queries from './Queries';
+import * as Mutations from './Mutations';
+import { from, Observable, throwError } from 'rxjs';
 
 // Re-export for ease-of-import
 export { gql } from 'graphql-request';
@@ -58,5 +61,42 @@ export class GraphQLClient {
    */
   public async Authenticate(username: string, password: string): Promise<any> {
 
+  }
+
+  /**
+   * 
+   * @param filter 
+   * @returns 
+   */
+  public async GetClusters(filter: any = null): Promise<any> {
+    // return Observable.from(this.request(Queries.GetClusters, { filter }))
+    return from(this.request(Queries.GetClusters, { filter }))
+      .pipe(
+        // map(console.log),
+        map(res => {
+          if (res.errors)
+            throw new Error(res.errors[0].message);
+          return res;
+        }),
+        pluck('Cluster')
+      ).toPromise();
+  }
+
+  /**
+   * 
+   * @param criterion Either the name or ID of a cluster to retrieve
+   * @returns 
+   */
+  public async GetCluster(criterion: string): Promise<any> {
+    return from(this.request(Queries.GetClusters, { OR: [{ Name: criterion }, { id: criterion }] }))
+      .pipe(
+        map(res => {
+          if (res.errors)
+            throw new Error(res.errors[0].message);
+          return res;
+        }),
+        pluck('Cluster'),
+        map(res => res[0])
+      ).toPromise();
   }
 }
