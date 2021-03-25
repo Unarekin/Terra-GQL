@@ -4,7 +4,7 @@
   "description": "Browser-based library adding wrappers for common GQL queries / mutations for the Terra Volanta API back-end.",
   "main": "dist/index.min.js",
   "scripts": {
-    "test": "mocha test/**.ts",
+    "test": "mocha test/**.ts"
   },
   "repository": {
     "type": "git",
@@ -35,5 +35,14 @@
     "full-trace": true,
     "reporter": "mochawesome",
     "reporter-options": "reportFilename=api-backend,reportTitle=Terra GQL Tests,reportPageTitle=Terra GQL Tests,reportDir=./test-reports"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.15",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^14.14.36",
+    "chai": "^4.3.4",
+    "mochawesome": "^6.2.2",
+    "source-map-support": "^0.5.19",
+    "ts-node": "^9.1.1"
   }
 }
