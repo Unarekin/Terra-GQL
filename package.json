@@ -1,0 +1,30 @@
+{
+  "name": "terragql",
+  "version": "1.0.0",
+  "description": "Browser-based library adding wrappers for common GQL queries / mutations for the Terra Volanta API back-end.",
+  "main": "dist/index.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Unarekin/Terra-GQL.git"
+  },
+  "keywords": [
+    "graphql",
+    "terracotf",
+    "terravolanta"
+  ],
+  "author": "Erica Phelps",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Unarekin/Terra-GQL/issues"
+  },
+  "homepage": "https://github.com/Unarekin/Terra-GQL#readme",
+  "dependencies": {
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
+    "jquery": "^3.6.0",
+    "md5": "^2.3.0"
+  }
+}
