@@ -17,6 +17,7 @@ export class GraphQLClient {
 
   public BearerToken: string = "";
 
+  public get IsAuthenticated(): boolean { return this.Token.length > 0; }
 
   /**
    * Creates a GraphQL client.
@@ -48,5 +49,14 @@ export class GraphQLClient {
     if (token)
       headers.authorization = `Bearer ${token}`;
     return this._client.request(query, params, headers);
+  }
+
+  /**
+   * 
+   * @param username 
+   * @param password 
+   */
+  public async Authenticate(username: string, password: string): Promise<any> {
+
   }
 }
