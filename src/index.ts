@@ -1,5 +1,7 @@
 import { GraphQLClient as reqclient, gql } from 'graphql-request';
 import { pluck } from 'rxjs/operators';
+import * as Queries from './Queries';
+import * as Mutations from './Mutations';
 
 // Re-export for ease-of-import
 export { gql } from 'graphql-request';
@@ -48,5 +50,13 @@ export class GraphQLClient {
     if (token)
       headers.authorization = `Bearer ${token}`;
     return this._client.request(query, params, headers);
+  }
+
+  /**
+   * 
+   * @param filter 
+   */
+  public async GetClusters(filter: any): Promise<any> {
+
   }
 }
