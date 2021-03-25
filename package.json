@@ -25,7 +25,8 @@
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "jquery": "^3.6.0",
-    "md5": "^2.3.0"
+    "md5": "^2.3.0",
+    "rxjs": "^6.6.6"
   },
   "mocha": {
     "require": [
