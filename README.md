@@ -1,5 +1,5 @@
-# Terra Character Builder GQL Integration
-GraphQL integration for the Terra Volanta character builder
+# Terra Volanta GQL Integration
+Browser-based library adding wrappers for common GQL queries / mutations for the Terra Volanta API back-end.
 
 # License
 MIT License
