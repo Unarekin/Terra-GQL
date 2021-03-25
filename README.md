@@ -4,7 +4,7 @@ Browser-based library adding wrappers for common GQL queries / mutations for the
 # License
 MIT License
 
-Copyright (c) 2021 Unarekin
+Copyright (c) 2021 Erica Phelps
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
