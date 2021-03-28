@@ -12,7 +12,7 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": ".",
+    "rootDir": "./src",
     "noImplicitUseStrict": true,
     "noImplicitReturns": true,
     "noImplicitThis": false,

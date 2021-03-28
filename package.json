@@ -4,7 +4,9 @@
   "description": "Browser-based library adding wrappers for common GQL queries / mutations for the Terra Volanta API back-end.",
   "main": "dist/index.min.js",
   "scripts": {
-    "test": "mocha test/**.ts"
+    "test": "mocha test/**.ts",
+    "build": "tsc -p ./",
+    "browserify": "npx simplifyify --minify --debug --outfile ./dist/index.min.js ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,7 +17,11 @@
     "terracotf",
     "terravolanta"
   ],
-  "author": "Erica Phelps",
+  "author": {
+    "name": "Erica Phelps",
+    "url": "https://github.com/unarekin",
+    "email": "Erica@BlackSpork.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Unarekin/Terra-GQL/issues"
@@ -27,6 +33,16 @@
     "jquery": "^3.6.0",
     "md5": "^2.3.0",
     "rxjs": "^6.6.6"
+  },
+  "browserify": {
+    "plugins": [
+      [
+        "browserify-banner",
+        {
+          "file": "./src/banner.txt"
+        }
+      ]
+    ]
   },
   "mocha": {
     "require": [
