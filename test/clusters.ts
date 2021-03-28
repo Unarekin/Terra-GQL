@@ -7,12 +7,23 @@ describe("Clusters", () => {
     client = new GraphQLClient();
   });
 
-  it("Fetches clusters", async () => {
-    let res = await client.GetClusters();
-    assert.isOk(res, "Could not query database.");
-    assert.isArray(res, "Query did not return array.");
-    assert.isAbove(res.length, 0, "Query returned no clusters.");
-    assert.equal(res.length, 6, `Expected 6 clusters, receive ${res.length}`);
+  describe("Fetches clusters", async () => {
+    it("All", async () => {
+      let res = await client.GetClusters();
+      assert.isOk(res, "Could not query database.");
+      assert.isArray(res, "Query did not return array.");
+      assert.isAbove(res.length, 0, "Query returned no clusters.");
+      assert.equal(res.length, 6, `Expected 6 clusters, received ${res.length}`);
+    });
+
+    it("Filtered", async () => {
+      let res = await client.GetClusters({ OR: [{ Name: "Combat" }, { Name: "Support" }] });
+      // return from(this.request(Queries.GetClusters, { OR: [{ Name: criterion }, { id: criterion }] }))
+      assert.isOk(res, "Could not query database.");
+      assert.isArray(res, "Query did not return array.");
+      assert.isAbove(res.length, 0, "Query returned no clusters.");
+      assert.equal(res.length, 2, `Expected 6 clusters, received ${res.length}`);
+    })
   });
 
   describe("Fetches single cluster", () => {
