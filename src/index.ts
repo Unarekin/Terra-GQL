@@ -76,7 +76,7 @@ export class GraphQLClient {
 
   // #endregion Public Accessors (4)
 
-  // #region Public Methods (9)
+  // #region Public Methods (11)
 
   /**
    * Authenticates against the server, storing an authentication token and our current user.
@@ -172,6 +172,39 @@ export class GraphQLClient {
 
   /**
    * 
+   * @param criterion 
+   * @returns 
+   */
+  public async GetProfession(criterion: string) {
+    return from(this.request(Queries.GetProfessions, { filter: { OR: [{ Name: criterion }, { id: criterion }] } }))
+      .pipe(
+        tap(res => {
+          if (res.errors)
+            throw new Error(res.errors[0].message);
+        }),
+        pluck('Profession'),
+        map(res => res[0])
+      ).toPromise();
+  }
+
+  /**
+   * 
+   * @param filter 
+   * @returns 
+   */
+  public async GetProfessions(filter?) {
+    return from(this.request(Queries.GetProfessions, { filter }))
+      .pipe(
+        tap(res => {
+          if (res.errors)
+            throw new Error(res.errors[0].message);
+        }),
+        pluck('Profession')
+      ).toPromise();
+  }
+
+  /**
+   * 
    * @param filter 
    */
   public async GetSpecies(filter?: string | object): Promise<any | any[]> {
@@ -245,5 +278,5 @@ export class GraphQLClient {
     return this._client.request(query, params, headers);
   }
 
-  // #endregion Public Methods (9)
+  // #endregion Public Methods (11)
 }
