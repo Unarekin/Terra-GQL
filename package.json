@@ -1,6 +1,6 @@
 {
   "name": "terragql",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Browser-based library adding wrappers for common GQL queries / mutations for the Terra Volanta API back-end.",
   "main": "dist/index.min.js",
   "scripts": {
