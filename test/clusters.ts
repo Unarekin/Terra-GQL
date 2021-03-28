@@ -7,7 +7,21 @@ describe("Clusters", () => {
     client = new GraphQLClient();
   });
 
-  describe("Fetches clusters", async () => {
+  describe("Retrieves clusters", async () => {
+    it("By name", async () => {
+      let res = await client.GetCluster("Combat");
+      assert.isOk(res);
+      assert.property(res, "id");
+      assert.equal(res.id, "89b97b7036c54366a19eff86a658b604");
+    });
+
+    it("By id", async () => {
+      let res = await client.GetCluster("89b97b7036c54366a19eff86a658b604");
+      assert.isOk(res);
+      assert.property(res, "Name");
+      assert.equal(res.Name, "Combat");
+    })
+
     it("All", async () => {
       let res = await client.GetClusters();
       assert.isOk(res, "Could not query database.");
@@ -23,22 +37,6 @@ describe("Clusters", () => {
       assert.isArray(res, "Query did not return array.");
       assert.isAbove(res.length, 0, "Query returned no clusters.");
       assert.equal(res.length, 2, `Expected 6 clusters, received ${res.length}`);
-    })
-  });
-
-  describe("Fetches single cluster", () => {
-    it("By ID", async () => {
-      let res = await client.GetCluster("89b97b7036c54366a19eff86a658b604");
-      assert.isOk(res);
-      assert.property(res, "Name");
-      assert.equal(res.Name, "Combat");
-    });
-
-    it("By Name", async () => {
-      let res = await client.GetCluster("Combat");
-      assert.isOk(res);
-      assert.property(res, "id");
-      assert.equal(res.id, "89b97b7036c54366a19eff86a658b604");
     });
   });
 });
