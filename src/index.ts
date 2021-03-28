@@ -76,7 +76,7 @@ export class GraphQLClient {
 
   // #endregion Public Accessors (4)
 
-  // #region Public Methods (6)
+  // #region Public Methods (9)
 
   /**
    * Authenticates against the server, storing an authentication token and our current user.
@@ -137,13 +137,37 @@ export class GraphQLClient {
       ).toPromise();
   }
 
-  /** */
-  public async Logout() {
-    return this.request(Mutations.LogOut)
-      .then((res) => {
-        this.Token = "";
-        return res;
-      });
+  /**
+   * 
+   * @param criterion 
+   * @returns 
+   */
+  public async GetFaith(criterion: string) {
+    return from(this.request(Queries.GetFaiths, { filter: { OR: [{ id: criterion }, { Name: criterion }] } }))
+      .pipe(
+        tap(res => {
+          if (res.errors)
+            throw new Error(res.errors[0].message);
+        }),
+        pluck('Faith'),
+        map(res => res[0])
+      ).toPromise();
+  }
+
+  /**
+   * 
+   * @param filter 
+   * @returns 
+   */
+  public async GetFaiths(filter?) {
+    return from(this.request(Queries.GetFaiths, { filter }))
+      .pipe(
+        tap(res => {
+          if (res.errors)
+            throw new Error(res.errors[0].message);
+        }),
+        pluck('Faith')
+      ).toPromise();
   }
 
   /**
@@ -174,6 +198,15 @@ export class GraphQLClient {
             return res;
         })
       ).toPromise();
+  }
+
+  /** */
+  public async Logout() {
+    return this.request(Mutations.LogOut)
+      .then((res) => {
+        this.Token = "";
+        return res;
+      });
   }
 
   /**
@@ -212,5 +245,5 @@ export class GraphQLClient {
     return this._client.request(query, params, headers);
   }
 
-  // #endregion Public Methods (6)
+  // #endregion Public Methods (9)
 }
