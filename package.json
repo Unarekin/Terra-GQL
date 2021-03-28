@@ -35,7 +35,7 @@
     ],
     "full-trace": true,
     "reporter": "mochawesome",
-    "reporter-options": "reportFilename=api-backend,reportTitle=Terra GQL Tests,reportPageTitle=Terra GQL Tests,reportDir=./test-reports"
+    "reporter-options": "reportFilename=tests,reportTitle=Terra GQL Tests,reportPageTitle=Terra GQL Tests,reportDir=./test-reports"
   },
   "devDependencies": {
     "@types/chai": "^4.2.15",
