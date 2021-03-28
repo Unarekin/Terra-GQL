@@ -147,6 +147,36 @@ export class GraphQLClient {
   }
 
   /**
+   * 
+   * @param filter 
+   */
+  public async GetSpecies(filter?: string | object): Promise<any | any[]> {
+    let criteria = {};
+    let retSingle: boolean = false;
+
+    if (typeof (filter) === "string") {
+      criteria = { OR: [{ Name: filter }, { id: filter }] };
+      retSingle = true;
+    } else if (filter) {
+      criteria = filter;
+    }
+    return from(this.request(Queries.GetSpecies, { filter: criteria }))
+      .pipe(
+        tap(res => {
+          if (res.errors)
+            throw new Error(res.errors[0].message);
+        }),
+        pluck('Species'),
+        map(res => {
+          if (retSingle)
+            return res[0];
+          else
+            return res;
+        })
+      ).toPromise();
+  }
+
+  /**
    * Queries the server for our current user, caching the results.
    */
   public async RefreshCurrentUser(): Promise<any> {
