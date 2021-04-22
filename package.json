@@ -54,9 +54,9 @@
     "reporter-options": "reportFilename=tests,reportTitle=Terra GQL Tests,reportPageTitle=Terra GQL Tests,reportDir=./test-reports"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.15",
+    "@types/chai": "^4.2.16",
     "@types/mocha": "^8.2.2",
-    "@types/node": "^14.14.36",
+    "@types/node": "^14.14.41",
     "chai": "^4.3.4",
     "mochawesome": "^6.2.2",
     "source-map-support": "^0.5.19",
