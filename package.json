@@ -1,0 +1,65 @@
+{
+  "name": "terragql",
+  "version": "0.1.0",
+  "description": "Browser-based library adding wrappers for common GQL queries / mutations for the Terra Volanta API back-end.",
+  "main": "dist/index.min.js",
+  "scripts": {
+    "test": "mocha test/**.ts",
+    "build": "tsc -p ./",
+    "browserify": "npx simplifyify --minify --debug --outfile ./dist/index.min.js ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Unarekin/Terra-GQL.git"
+  },
+  "keywords": [
+    "graphql",
+    "terracotf",
+    "terravolanta"
+  ],
+  "author": {
+    "name": "Erica Phelps",
+    "url": "https://github.com/unarekin",
+    "email": "Erica@BlackSpork.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Unarekin/Terra-GQL/issues"
+  },
+  "homepage": "https://github.com/Unarekin/Terra-GQL#readme",
+  "dependencies": {
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
+    "jquery": "^3.6.0",
+    "md5": "^2.3.0",
+    "rxjs": "^6.6.6"
+  },
+  "browserify": {
+    "plugins": [
+      [
+        "browserify-banner",
+        {
+          "file": "./src/banner.txt"
+        }
+      ]
+    ]
+  },
+  "mocha": {
+    "require": [
+      "source-map-support/register",
+      "ts-node/register"
+    ],
+    "full-trace": true,
+    "reporter": "mochawesome",
+    "reporter-options": "reportFilename=tests,reportTitle=Terra GQL Tests,reportPageTitle=Terra GQL Tests,reportDir=./test-reports"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.16",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^14.14.41",
+    "chai": "^4.3.4",
+    "mochawesome": "^6.2.2",
+    "source-map-support": "^0.5.19",
+    "ts-node": "^9.1.1"
+  }
+}
