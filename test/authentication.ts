@@ -2,9 +2,9 @@ import { assert } from "chai";
 import { GraphQLClient } from "../src";
 
 const USERNAME = "erica@blackspork.com";
-const PASSWORD = "Ecuipe97!";
+const PASSWORD = "";
 
-describe.skip("Authentication", () => {
+describe("Authentication", () => {
   let client: GraphQLClient = null;
   before("Creates client", () => {
     client = new GraphQLClient();

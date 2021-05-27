@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { GraphQLClient } from "../src";
 
-describe.skip("Professions", async () => {
+describe("Professions", async () => {
   let client: GraphQLClient = null;
   before("Creates client", () => (client = new GraphQLClient()));
 

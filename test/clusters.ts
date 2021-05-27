@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { GraphQLClient, gql } from "../src";
 
-describe.skip("Clusters", () => {
+describe("Clusters", () => {
   let client: GraphQLClient = null;
   before("Creates client", () => {
     client = new GraphQLClient();
