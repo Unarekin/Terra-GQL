@@ -1,9 +1,11 @@
-import { assert } from 'chai';
-import { GraphQLClient } from '../src';
+import { assert } from "chai";
+import { GraphQLClient } from "../src";
 
 describe("Faiths", async () => {
   let client: GraphQLClient = null;
-  before("Creates client", () => { client = new GraphQLClient(); });
+  before("Creates client", () => {
+    client = new GraphQLClient();
+  });
 
   describe("Retrieves faiths", async () => {
     it("By name", async () => {
@@ -24,14 +26,23 @@ describe("Faiths", async () => {
       let faiths = await client.GetFaiths();
       assert.isOk(faiths, "Unable to query database.");
       assert.isArray(faiths, "Expected GetFaiths to return array.");
-      assert.equal(faiths.length, 9, `Expected 9 faiths, received ${faiths.length}`);
+      assert.equal(
+        faiths.length,
+        9,
+        `Expected 9 faiths, received ${faiths.length}`
+      );
     });
     it("Filtered", async () => {
-      let faiths = await client.GetFaiths({ OR: [{ Name: "Rhakat" }, { id: "a433678ae0204e83a160863806dc8956" }] });
+      let faiths = await client.GetFaiths({
+        OR: [{ Name: "Rhakat" }, { id: "a433678ae0204e83a160863806dc8956" }],
+      });
       assert.isOk(faiths, "Unable to query database.");
       assert.isArray(faiths, "Expected GetFaiths to return array.");
-      assert.equal(faiths.length, 2, `Expected GetFaiths to return 2 faiths, received ${faiths.length}`);
-
+      assert.equal(
+        faiths.length,
+        2,
+        `Expected GetFaiths to return 2 faiths, received ${faiths.length}`
+      );
     });
   });
 });

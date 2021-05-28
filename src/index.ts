@@ -4,10 +4,10 @@ import { from, iif, Observable, throwError } from "rxjs";
 
 import * as Queries from "./Queries";
 import * as Mutations from "./Mutations";
-import { Feature } from "./interfaces";
+import { Character, Feature } from "./interfaces";
 
 // Re-export for ease-of-import
-export { gql } from "graphql-request";
+// export { gql } from "graphql-request";
 
 export class GraphQLClient {
   // #region Properties (5)
@@ -275,6 +275,78 @@ export class GraphQLClient {
       .toPromise();
   }
 
+  /** Retrieves a character by ID. */
+  public async GetCharacterById(id: string): Promise<Character> {
+    return from(this.request(Queries.GetCharacterById, { id }))
+      .pipe(
+        tap((res) => {
+          if (res.errors) throw new Error(res.errors[0].message);
+        }),
+        pluck("Character", "0")
+      )
+      .toPromise();
+  }
+
+  /** Retrieves characters by filter criteria */
+  public async GetCharacters(filter: any): Promise<Character[]> {
+    return from(this.request(Queries.GetCharacters, { filter }))
+      .pipe(
+        tap((res) => {
+          if (res.errors) throw new Error(res.errors[0].message);
+        }),
+        pluck("Character")
+      )
+      .toPromise();
+  }
+
+  /** Retrieves all characters for a given user. */
+  public async GetCharactersForUser(user: string): Promise<Character[]> {
+    return from(this.request(Queries.GetCharactersForUser, { user }))
+      .pipe(
+        tap((res) => {
+          if (res.errors) throw new Error(res.errors[0].message);
+        }),
+        pluck("User", "Character")
+      )
+      .toPromise();
+  }
+
+  public async GetCharactersForCurrentUser(): Promise<Character[]> {
+    return from(
+      this.request(Queries.GetCharactersForUser, { user: this.CurrentUser.id })
+    )
+      .pipe(
+        tap((res) => {
+          if (res.errors) throw new Error(res.errors[0].message);
+        }),
+        pluck("User", "0", "Characters")
+      )
+      .toPromise();
+  }
+
+  /** Create a character **/
+  public async CreateCharacter(
+    data: {
+      Name: string;
+      Description?: string;
+      Species: string;
+      Profession: string;
+      Faith?: string;
+      Features: string[];
+      FPPs: { id: string; quantity: number }[];
+    },
+    Items?: { id: string; quantity: number }[]
+  ): Promise<string> {
+    return from(this.request(Mutations.CreateCharacter, data))
+      .pipe(
+        tap((res) => {
+          if (res.errors) throw new Error(res.errors[0].message);
+        }),
+        pluck("CreateFullCharacter")
+      )
+      .toPromise() as Promise<string>;
+  }
+
   /**
    *
    * @param filter
@@ -337,7 +409,7 @@ export class GraphQLClient {
    * @param params Any variables to be passed to the query.
    * @returns A promise that resolves with the results of the query.
    */
-  public async request(query: string, params: any = {}): Promise<any> {
+  private async request(query: string, params: any = {}): Promise<any> {
     let headers: any = {};
     // let token = localStorage.getItem("gql_auth_token");
     let token: string = this._getToken();
