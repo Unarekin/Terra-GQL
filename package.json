@@ -8,7 +8,7 @@
     "build": "tsc -p ./",
     "browserify": "npx simplifyify --minify --debug --outfile ./dist/index.min.js ./dist/index.js",
     "docs": "npx typedoc --excludePrivate --disableSources --name \"Terra Volanta GQL\" --plugin none --out docs ./src/index.ts",
-    "docs:markdown": "typedoc --excludePrivate --disableSources --name \"Terra Volanta GQL\" --out docs-md ./src/index.ts"
+    "docs:markdown": "node_modules/typedoc/bin/typedoc --theme node_modules/typedoc-markdown-theme/bin --out docs ./src/index.ts --excludePrivate --excludeProtected --excludeInternal"
   },
   "repository": {
     "type": "git",
