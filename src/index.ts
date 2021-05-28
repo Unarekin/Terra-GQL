@@ -7,7 +7,7 @@ import * as Mutations from "./Mutations";
 import { Character, Feature } from "./interfaces";
 
 // Re-export for ease-of-import
-export { gql } from "graphql-request";
+// export { gql } from "graphql-request";
 
 export class GraphQLClient {
   // #region Properties (5)
@@ -409,7 +409,7 @@ export class GraphQLClient {
    * @param params Any variables to be passed to the query.
    * @returns A promise that resolves with the results of the query.
    */
-  public async request(query: string, params: any = {}): Promise<any> {
+  private async request(query: string, params: any = {}): Promise<any> {
     let headers: any = {};
     // let token = localStorage.getItem("gql_auth_token");
     let token: string = this._getToken();
