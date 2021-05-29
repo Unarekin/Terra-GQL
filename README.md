@@ -3,6 +3,9 @@ Browser-based library adding wrappers for common GQL queries / mutations for the
 
 ![License: MIT](https://img.shields.io/github/license/unarekin/terra-gql) ![Build: 23 passing](https://img.shields.io/badge/build-23%20passed-brightgreen) ![Release](https://img.shields.io/github/v/release/unarekin/terra-gql) ![Version: Develop](https://img.shields.io/github/package-json/v/unarekin/terra-gql/develop)
 
+# Documentation
+Please see [the wiki](https://github.com/Unarekin/Terra-GQL/wiki) for documentation.
+
 # License
 MIT License
 
