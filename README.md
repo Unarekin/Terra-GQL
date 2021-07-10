@@ -1,7 +1,7 @@
 # Terra Volanta GQL Integration
 Browser-based library adding wrappers for common GQL queries / mutations for the Terra Volanta API back-end.
 
-![License: MIT](https://img.shields.io/github/license/unarekin/terra-gql) ![Build: 23 passing](https://img.shields.io/badge/build-23%20passed-brightgreen) ![Release](https://img.shields.io/github/v/release/unarekin/terra-gql) [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/organization/repository)
+![License: MIT](https://img.shields.io/github/license/unarekin/terra-gql) ![Build: 36 passing](https://img.shields.io/badge/build-36%20passed-brightgreen) ![Release](https://img.shields.io/github/v/release/unarekin/terra-gql) [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/organization/repository)
 # Documentation
 Please see [the wiki](https://github.com/Unarekin/Terra-GQL/wiki) for documentation.
 
